@@ -1,0 +1,10 @@
+services:
+  notifications-api:
+    container_name: notifications-api
+    build: notificationsapi
+    command: npm run dev
+    volumes:
+      - ./notificationsapi:/src/
+    ports:
+      - "3000:3000"
+      
