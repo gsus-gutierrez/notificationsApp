@@ -4,7 +4,7 @@ services:
     build: notificationsapi
     command: npm run dev
     volumes:
-      - ./notificationsapi:/src/
+      - ./notificationsapi/src:/app/src
     ports:
       - "3000:3000"
       
