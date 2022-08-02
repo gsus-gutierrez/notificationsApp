@@ -1,10 +1,10 @@
-const { pool } = require("../models");
-
+const userRouter = require('./userRoutes')
+const notificationRouter = require('./notificationRoutes')
 const router = require("express").Router();
 
-router.get("/db", (req, res) => {
-  res.send('hsfsdis');
-});
+router.use(userRouter)
+router.use(notificationRouter)
+
 
 module.exports = {
   router,
