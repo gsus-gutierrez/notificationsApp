@@ -11,6 +11,21 @@ CREATE TABLE AppUser(
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
+CREATE TABLE IF NOT EXISTS "notification" (
+    "notificationid" UUID NOT NULL UNIQUE,
+    "read" BOOLEAN NOT NULL DEFAULT false,
+    "notification_type" VARCHAR(255) NOT NULL,
+    "created_at" TIMESTAMP WITH TIME ZONE NOT NULL,
+    "updated_at" TIMESTAMP WITH TIME ZONE NOT NULL,
+    "notifierid" UUID REFERENCES "appuser" ("appuserid") ON DELETE
+    SET
+        NULL ON UPDATE CASCADE,
+        "actorid" UUID REFERENCES "appuser" ("appuserid") ON DELETE
+    SET
+        NULL ON UPDATE CASCADE,
+        PRIMARY KEY ("notificationid")
+);
+
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 INSERT INTO
@@ -33,4 +48,10 @@ VALUES
         'MB',
         'Mcormick',
         'mb.mcormick@resilia.com'
+    ),
+    (
+        uuid_generate_v4(),
+        'Jovonne',
+        'Cameron',
+        'jovonne.cameron@resilia.com'
     );

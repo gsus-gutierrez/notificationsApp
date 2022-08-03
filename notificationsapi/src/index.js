@@ -16,10 +16,6 @@ app.use(cors())
 app.use(express.json());
 app.use(router);
 
-(() => {
-  db.sequelize.sync({ alter:true });
-})();
-
 app.listen(port, () => {
   console.log(
     `Example app listening to your requests at http://localhost:${port}`
