@@ -8,6 +8,8 @@ services:
       - ./notificationsapi/src:/app/src
     ports:
       - "3000:3000"
+    depends_on: 
+      - db
   db:
     image: postgres:alpine
     ports:
@@ -33,6 +35,9 @@ services:
     environment:
     - CHOKIDAR_USEPOLLING=true
     - CHOKIDAR_INTERVAL=1000
+    depends_on: 
+      - notifications-api
+      - db
 volumes:
   db:
     driver: local
