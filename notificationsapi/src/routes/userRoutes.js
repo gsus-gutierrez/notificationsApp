@@ -1,12 +1,23 @@
 const { db } = require("../models/index.js");
 const router = require("express").Router();
 
-const AppUser = db.appuser
-const Notification = db.notification
+const AppUser = db.appuser;
+const Notification = db.notification;
 
 router.get("/users", async (req, res) => {
   try {
-    const appUsers = await AppUser.findAll();
+    const appUsers = await AppUser.findAll({
+      include: [
+        {
+          model: Notification,
+          as: "mygeneratednotifications",
+        },
+        {
+          model: Notification,
+          as: "mynotifications",
+        },
+      ],
+    });
     res.status(200).send(appUsers);
   } catch (error) {
     res.status(400).send(error);
@@ -17,18 +28,21 @@ router.get("/user/:id", async (req, res) => {
   try {
     const user = await AppUser.findOne({
       where: { appuserid: req.params.id },
-      include: [{
-        model: Notification,
-        as: "mygeneratednotifications"
-      },{
-        model: Notification,
-        as: "mynotifications"
-      }]
+      include: [
+        {
+          model: Notification,
+          as: "mygeneratednotifications",
+        },
+        {
+          model: Notification,
+          as: "mynotifications",
+        },
+      ],
     });
     if (!user) res.status(404).send("User not found");
     else res.status(200).send(user);
   } catch (error) {
-    console.error(error)
+    console.error(error);
     res.status(400).send(error);
   }
   0;
