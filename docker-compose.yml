@@ -25,12 +25,14 @@ services:
     container_name: notificationsapp
     build: notificationsapp
     ports:
-      - "8000:8000"
+      - "8080:8080"
     volumes:
-      - ./notificationsapp/src:/app/src
+      - ~/.composer-docker/cache:/root/.composer/cache:delegated
+      - ./notificationsapp/src:/app/src:cached
     tty: true
     environment:
     - CHOKIDAR_USEPOLLING=true
+    - CHOKIDAR_INTERVAL=1000
 volumes:
   db:
     driver: local
