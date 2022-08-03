@@ -1,59 +1,25 @@
 <script setup>
 import { RouterLink, RouterView } from "vue-router";
-import HelloWorld from "./components/HelloWorld.vue";
-import { onMounted} from "vue"
 
-onMounted(async () => {
-  console.log(
-    await fetch("http://localhost:3000/users")
-      .then((data) => data.json())
-      .then((res) => console.log(res))
-  );
-});
 </script>
 
 <template>
   <header>
-    <img
-      alt="Vue logo"
-      class="logo"
-      src="@/assets/logo.svg"
-      width="125"
-      height="125"
-    />
-
-    <div class="wrapper">
-      <HelloWorld msg="Essssso Mamona!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
+    <RouterView />
   </header>
-
-  <RouterView />
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
 
 nav {
-  width: 100%;
-  font-size: 12px;
+  width: 200%;
+  font-size: 4rem;
   text-align: center;
   margin-top: 2rem;
 }
 
 nav a.router-link-exact-active {
+  font-size: x-large;
   color: var(--color-text);
 }
 
