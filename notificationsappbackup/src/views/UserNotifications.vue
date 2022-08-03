@@ -1,24 +1,36 @@
-<script setup>
-import { onBeforeMount, reactive, ref } from "vue";
-import { useRoute } from "vue-router";
-
-const id = useRoute().params.id;
-
-let user = reactive({});
-
-onBeforeMount(async () => {
-  await fetch(`http://localhost:3000/user/${id}`)
-    .then((res) => res.json())
-    .then((data) => {
-      Object.keys(data).forEach((prop) => {
-        user[prop] = data[prop];
+<script>
+export default {
+  data: () => {
+    return {
+      id: this.$router.params.id,
+      user: {},
+    };
+  },
+  async onBeforeMount() {
+    console.log(this)
+    await fetch(`http://localhost:3000/user/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        Object.keys(data).forEach((prop) => {
+          user[prop] = data[prop];
+        });
+        return data;
       });
-      return data;
-    });
-});
+  },
+
+  methods: {
+    goHome() {
+      useRouter("/");
+    },
+  },
+};
+import { onBeforeMount, reactive, ref } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import router from "../router/index.js";
 </script>
 
 <template>
+  <v-btn @click="goHome">Go Home</v-btn>
   <Router-Link to="/" class="link">Go home</Router-Link>
   <div v-if="user.first_name">
     <h1>This is {{ user.first_name }}´s dashboard</h1>

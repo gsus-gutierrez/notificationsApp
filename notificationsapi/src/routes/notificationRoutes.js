@@ -24,7 +24,6 @@ router.post("/notification", async (req, res) => {
     }
     const notifierExists= await AppUser.findByPk(req.body.notifierid)
     const actorExists = await AppUser.findByPk(req.body.actorid)
-    console.log(notifierExists, actorExists)
     const newNotification = await Notification.create({ ...req.body });
     res.status(200).send(newNotification);
   } catch (error) {
