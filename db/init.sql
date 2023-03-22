@@ -35,23 +35,23 @@ VALUES
         uuid_generate_v4(),
         'Jesus',
         'Gutierrez',
-        'jesus.gutierrez@resilia.com'
+        'jesus.gutierrez@nowhere.com'
     ),
     (
         uuid_generate_v4(),
-        'Jenn',
-        'Everhart',
-        'jenn.everhart@resilia.com'
+        'John',
+        'Deere',
+        'john.deere@nowhere.com'
     ),
     (
         uuid_generate_v4(),
-        'MB',
-        'Mcormick',
-        'mb.mcormick@resilia.com'
+        'James',
+        'McAvoy',
+        'james.mcavoy@nowhere.com'
     ),
     (
         uuid_generate_v4(),
-        'Jovonne',
-        'Cameron',
-        'jovonne.cameron@resilia.com'
+        'Sarah',
+        'James',
+        'sarah.james@nowhere.com'
     );
